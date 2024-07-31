@@ -18,9 +18,6 @@ public class SimpleHandler implements Resource, RequestHandler<Map<String, Objec
 
     @Override
     public String handleRequest(Map<String, Object> input, Context context) {
-        if(simpleService == null){
-            setter();
-        }
         logger.log(Level.INFO, "is simple service null? " + (simpleService == null));
         var type = input.get("httpMethod");
         if (type.equals("GET")) {
@@ -29,10 +26,6 @@ public class SimpleHandler implements Resource, RequestHandler<Map<String, Objec
             simpleService.handlePost();
         }
         return "OK";
-    }
-
-    private void setter(){
-        this.simpleService = new SimpleService();
     }
 
     @Override
